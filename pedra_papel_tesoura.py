@@ -77,8 +77,16 @@ def verificar_vencedor(usuario, computador):
 
 
 def main():
+    vitorias = 0
+    derrotas = 0
+    empates = 0
+
     while True:
         print("\n=== Pedra, Papel e Tesoura ===")
+        print("\nPlacar atual:")
+        print(f"Vitórias: {vitorias} 🏆")
+        print(f"Derrotas: {derrotas} 💔")
+        print(f"Empates: {empates}")
         print("Selecione uma das opções:")
         print("0. Pedra 🗿")
         print("1. Papel 📄")
@@ -104,9 +112,21 @@ def main():
         quem_venceu = verificar_vencedor(opcao_num, numero_jogada_pc)
         print(quem_venceu)
 
+        if quem_venceu == "Empate! 🤝":
+            empates += 1
+        elif quem_venceu == "Você venceu! 🎉":
+            vitorias += 1
+        else:
+            derrotas += 1
+
         print("\n=== Nova Partida? ===")
         sair = input("\nDigite 1 para continuar ou 0 para sair: ")
         if sair == '0':
+            print("\n=== Placar Final ===")
+            print(f"Vitórias: {vitorias} 🏆")
+            print(f"Derrotas: {derrotas} 💔")
+            print(f"Empates: {empates}")
+            print(f"Total de jogos: {vitorias + derrotas + empates}")
             print("\nFoi muito divertido! Até a próxima! 👋")
             break
 
