@@ -59,22 +59,36 @@ def jogada_computador():
     print("A jogada do computador foi: ")
     return jogada(opcao_pc), opcao_pc
 
-def verificar_vencedor():
+def verificar_vencedor(usuario, computador):
+    jogadas = ("Pedra", "Papel", "Tesoura")
+
+    print(f"\nVocê escolheu: {jogadas[usuario]}")
+    print(f"Computador escolheu: {jogadas[computador]}")
+
+    if usuario == computador:
+        return "Empate! 🤝"
     
+    if (usuario == 0 and computador == 2) or \
+        (usuario == 1 and computador == 0) or \
+        (usuario == 2 and computador == 1):
+        return "Você venceu! 🎉"
+    
+    return "Computador venceu! 🤖"
+
 
 def main():
     while True:
-        print("\nBem-vindo ao jogo de Pedra, Papel e Tesoura!")
+        print("\n=== Pedra, Papel e Tesoura ===")
         print("Selecione uma das opções:")
-        print("0. Pedra")
-        print("1. Papel")
-        print("2. Tesoura")
-        print("3. Sair")
+        print("0. Pedra 🗿")
+        print("1. Papel 📄")
+        print("2. Tesoura ✂️")
+        print("3. Sair 👋")
 
         opcao = input("\nEscolha uma opção (0-3): ")
 
         if opcao == '3':
-            print("Obrigado por jogar!")
+            print("\nObrigado por jogar! 👋")
             break
 
         jogada_player = jogada_usuario(opcao)
@@ -84,13 +98,17 @@ def main():
         print(jogada_player)
         jogada_visual_pc, numero_jogada_pc = jogada_computador()
         print(jogada_visual_pc)
-        print("\nGostaria de jogar novamente?")
-        sair = input("\nEscolha sua opção, '1' para continuar e '0' para sair: ")
+
+        print("\n=== Resultado ===")
+        opcao_num = int(opcao)
+        quem_venceu = verificar_vencedor(opcao_num, numero_jogada_pc)
+        print(quem_venceu)
+
+        print("\n=== Nova Partida? ===")
+        sair = input("\nDigite 1 para continuar ou 0 para sair: ")
         if sair == '0':
-            print("Muito obrigado por jogar!")
+            print("\nFoi muito divertido! Até a próxima! 👋")
             break
-        else:
-            continue
 
 if __name__ == "__main__":
     main()
